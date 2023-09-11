@@ -7,16 +7,31 @@
     align-items: center;
 
     .logo {
-        font-size: 30px;
+        font-size: 32px;
+        color: #D97852;
     }
 
     .linksAndCart {
         display: flex;
         flex-direction: column;
+        align-items: end;
+        justify-content: space-between;
+        gap: 10px;
+
+        img {
+            height: 24px;
+        }
 
         ul {
             display: flex;
+            list-style: none;
+            font-size: 18px;
+            gap: 10px;
 
+            a {
+                text-decoration: none;
+                color: black;
+            }
         }
     }
 }

@@ -1,5 +1,7 @@
 import style from './HeaderLayout.module.scss'
 
+import { NavLink } from 'react-router-dom'
+
 export const HeaderLayout = () => {
 
 
@@ -17,11 +19,11 @@ export const HeaderLayout = () => {
             <div className={style.linksAndCart}>
                 <img src="/basket.svg" alt="" />
                 <ul>
-                    <li>w</li>
-                    <li>e</li>
-                    <li>t</li>
-                    <li>e</li>
-                    <li>w</li>
+                    <li><NavLink to='/'>HOME</NavLink></li>
+                    <li><NavLink to='/'>PLAKATER</NavLink></li>
+                    <li><NavLink to='/'>OM OS</NavLink></li>
+                    <li><NavLink to='/'>KONTAKT</NavLink></li>
+                    <li><NavLink to='/'>LOGIN</NavLink></li>
                 </ul>
             </div>
 
