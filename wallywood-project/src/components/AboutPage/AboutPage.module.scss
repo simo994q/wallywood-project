@@ -1,0 +1,29 @@
+.aboutPageContainer {
+    margin: 20px 40px;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Open Sans';
+
+    h2 {
+        color: #D97852;
+        font-size: 28px;
+    }
+
+    .aboutGrid {
+        display: grid;
+        gap: 50px;
+        grid-template-columns: 1fr 1fr;
+        margin-top: 20px;
+
+        .aboutText {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .aboutText,
+        img {
+            width: 100%;
+        }
+    }
+}
