@@ -1,0 +1,18 @@
+.homePageContainer {
+    margin: 0 40px;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Open Sans';
+
+    .curtains {
+        width: 100%;
+        margin: 20px 0;
+        border-radius: 8px;
+    }
+
+    h2 {
+        color: #D97852;
+        font-size: 28px;
+        font-family: 'Titillium Web';
+    }
+}

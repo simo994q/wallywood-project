@@ -13,7 +13,6 @@ export const MainLayout = () => {
             <div className={style.mainLayoutContainer}>
                 <HeaderLayout />
                 <Outlet />
-                outlet
                 <FooterLayout />
             </div>
         </ContainerLayout>
