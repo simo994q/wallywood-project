@@ -4,6 +4,14 @@ import { NavLink } from 'react-router-dom'
 
 export const HeaderLayout = () => {
 
+    const linksArray = [
+        { url: '/', page: 'Home'},
+        { url: '/fefe', page: 'Plakater'},
+        { url: '/dewd', page: 'Om os'},
+        { url: '/dewf', page: 'Kontakt'},
+        { url: '/dewf', page: 'Login'}
+    ]
+
 
     return (
         <div className={style.headerLayoutContainer}>
@@ -19,11 +27,15 @@ export const HeaderLayout = () => {
             <div className={style.linksAndCart}>
                 <img src="/basket.svg" alt="" />
                 <ul>
-                    <li><NavLink to='/'>HOME</NavLink></li>
-                    <li><NavLink to='/'>PLAKATER</NavLink></li>
-                    <li><NavLink to='/'>OM OS</NavLink></li>
-                    <li><NavLink to='/'>KONTAKT</NavLink></li>
-                    <li><NavLink to='/'>LOGIN</NavLink></li>
+                {linksArray.map((item, index) => {
+                    return (
+                        <li key={index}><NavLink to={item.url} className={style.navbarLink} style={({ isActive }) => {
+                            return {
+                                color: isActive ? '#D97852' : 'black'
+                            };
+                        }}>{item.page}</NavLink></li>
+                    )
+                })}
                 </ul>
             </div>
 

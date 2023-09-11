@@ -1,10 +1,10 @@
 .headerLayoutContainer {
-    padding: 10px 0px;
     margin: 0 40px;
     border-bottom: 2px solid black;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-family: 'Titillium Web';
 
     .logo {
         font-size: 32px;
@@ -20,6 +20,7 @@
 
         img {
             height: 24px;
+            cursor: pointer;
         }
 
         ul {
@@ -31,6 +32,7 @@
             a {
                 text-decoration: none;
                 color: black;
+                text-transform: uppercase;
             }
         }
     }
