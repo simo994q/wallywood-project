@@ -3,14 +3,19 @@ import { HeaderLayout } from "../HeaderLayout/HeaderLayout";
 import { FooterLayout } from "../FooterLayout/FooterLayout";
 import { ContainerLayout } from "../ContainerLayout/ContainerLayout";
 
+import style from './MainLayout.module.scss'
+
 export const MainLayout = () => {
 
 
     return (
         <ContainerLayout>
-            <HeaderLayout />
-            <Outlet />
-            <FooterLayout />
+            <div className={style.mainLayoutContainer}>
+                <HeaderLayout />
+                <Outlet />
+                outlet
+                <FooterLayout />
+            </div>
         </ContainerLayout>
     )
 }
