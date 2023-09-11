@@ -1,3 +1,22 @@
 .footerLayoutContainer {
+    margin: 0 40px;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Open Sans';
+    border-top: 2px solid #D97852;
+
+    .addressAndIcons {
+        display: flex;
+        gap: 50px;
+        .address {
+
+            h4 {
+                color: #D97852;
+                font-family: 'Titillium Web';
+            }
+        }
+    }
 
 }

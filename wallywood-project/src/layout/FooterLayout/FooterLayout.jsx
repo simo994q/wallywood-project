@@ -5,21 +5,19 @@ export const FooterLayout = () => {
 
     return (
         <div className={style.footerLayoutContainer}>
-            footer
-
-            
-            left side
-            <div>
-                address
-                <div></div>
-                info
-                <div></div>
+            <div className={style.addressAndIcons}>
+                <div className={style.address}>
+                    <h4>WALLYWOOD</h4>
+                    <p>Øster Uttrupvej 1</p>
+                    <p>9000 Aalborg</p>
+                </div>
+                <div className={style.info}>
+                    <p>CVR: 12345678</p>
+                    <p>MAIL: info@plakatshoppen.dk</p>
+                    <p>MOBIL: +45 9812 3456</p>
+                </div>
             </div>
-
-
-
-            icons
-            <div>
+            <div className={style.icons}>
                 <img src="/pinterest.svg" alt="" />
                 <img src="/instagram.svg" alt="" />
                 <img src="/facebook.svg" alt="" />

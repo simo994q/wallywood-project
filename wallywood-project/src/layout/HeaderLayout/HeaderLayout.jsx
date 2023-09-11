@@ -31,7 +31,7 @@ export const HeaderLayout = () => {
                     return (
                         <li key={index}><NavLink to={item.url} className={style.navbarLink} style={({ isActive }) => {
                             return {
-                                color: isActive ? '#D97852' : 'black'
+                                color: isActive ? '#D97852' : '#524641'
                             };
                         }}>{item.page}</NavLink></li>
                     )
