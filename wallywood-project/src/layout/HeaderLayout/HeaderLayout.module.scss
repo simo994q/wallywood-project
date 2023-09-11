@@ -1,3 +1,22 @@
 .headerLayoutContainer {
+    padding: 10px 0px;
+    margin: 0 40px;
+    border-bottom: 2px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
+    .logo {
+        font-size: 30px;
+    }
+
+    .linksAndCart {
+        display: flex;
+        flex-direction: column;
+
+        ul {
+            display: flex;
+
+        }
+    }
 }
