@@ -52,7 +52,7 @@ export const DetailsPage = () => {
                             <p>Varenummer (SKU): {data?.id}</p>
                             <h4>Kr. {data?.price},-</h4>
                             <div>
-                                
+                                input and button and stock
                             </div>
                         </div>
                     </div>
