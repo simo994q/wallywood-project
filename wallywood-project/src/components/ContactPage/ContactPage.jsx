@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 export const ContactPage = () => {
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit } = useForm();
 
     const setData = (data) => {
         console.log(data);
@@ -23,7 +23,6 @@ export const ContactPage = () => {
         <>
             <div className={style.contactPageContainer}>
                 <h2>Kontakt os</h2>
-
                 <form className={style.reactFormInput} onSubmit={handleSubmit(onSubmit)}>
                     <label htmlFor="name">
                         Dit navn: <span>*</span>
@@ -37,7 +36,6 @@ export const ContactPage = () => {
                         Din besked: <span>*</span>
                     </label>
                     <textarea {...register("message", { required: true })} name="message" id="message" rows={5} />
-                    {errors.exampleRequired && <span>This field is required</span>}
                     <input type="submit" value="Send" className={style.sendButton} />
                 </form>
             </div>

@@ -1,0 +1,43 @@
+.loginPageContainer {
+    margin: 20px 40px;
+    font-family: 'Open Sans';
+
+    h2 {
+        color: #D97852;
+        font-size: 28px;
+        font-family: 'Titillium Web';
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+        gap: 10px;
+
+        label {
+
+            span {
+                color: red;
+            }
+        }
+
+        input {
+            resize: none;
+            border: none;
+            outline: none;
+            border-top: 2px solid #D97852;
+            font-size: 16px;
+            padding: 4px;
+            font-family: 'Open Sans';
+        }
+
+        .loginButton {
+            border: 2px solid gray;
+            width: fit-content;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            background-color: #D9785277;
+        }
+    }
+}
