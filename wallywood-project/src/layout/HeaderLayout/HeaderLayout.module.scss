@@ -10,8 +10,12 @@
         font-size: 32px;
 
         h1 {
-            color: #D97852;
             font-weight: 800;
+            
+            a {
+                text-decoration: none;
+                color: #D97852;
+            }
         }
     }
 

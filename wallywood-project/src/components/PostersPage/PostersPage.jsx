@@ -22,7 +22,12 @@ export const PostersPage = () => {
                         const itemLink = `/poster/${item.id}`
 
                         return (
-                            <p key={item.id}><NavLink to={itemLink}>{item.name}</NavLink></p>
+                            <div key={item.id}>
+                                <NavLink to={itemLink}><img src={item.image} alt={item.name} /></NavLink>
+                                <h3><NavLink to={itemLink}>{item.name}</NavLink></h3>
+                                <p>Kr. {item.price},-</p>
+                                <input type="button" value="Læg i kurv" />
+                            </div>
                         )
                     })}
                 </div>
