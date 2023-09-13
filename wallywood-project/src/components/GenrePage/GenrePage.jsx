@@ -1,11 +1,13 @@
-import style from './PostersPage.module.scss'
+import style from './GenrePage.module.scss'
 import { useState, useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import { SortAndFilter } from '../SortAndFilter/SortAndFilter'
 
-export const PostersPage = () => {
+export const GenrePage = () => {
 
-    let url = 'http://localhost:4000/poster/list'
+    const { genre } = useParams()
+
+    let url = `http://localhost:4000/poster/list/${genre}`
 
     const [data, setData] = useState()
 

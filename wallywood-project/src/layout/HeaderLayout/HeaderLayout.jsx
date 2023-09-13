@@ -6,7 +6,7 @@ export const HeaderLayout = () => {
 
     const linksArray = [
         { url: '/', page: 'Home'},
-        { url: '/posters', page: 'Plakater'},
+        { url: '/poster', page: 'Plakater'},
         { url: '/about', page: 'Om os'},
         { url: '/contact', page: 'Kontakt'},
         { url: '/login', page: 'Login'}
