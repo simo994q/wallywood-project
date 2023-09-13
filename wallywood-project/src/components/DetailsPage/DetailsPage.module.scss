@@ -36,14 +36,16 @@
                 margin-bottom: 16px;
                 font-size: 20px;
             }
+
             h4 {
                 margin-bottom: 10px;
             }
+
             ul {
                 margin-bottom: 12px;
             }
         }
-        
+
         .poster {
             width: 100%;
             display: flex;
@@ -57,6 +59,47 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
+                width: 100%;
+
+                .cartAndStock {
+                    display: flex;
+                    justify-content: space-between;
+                    width: 100%;
+                    align-items: center;
+
+                    div {
+                        display: flex;
+                        gap: 20px;
+
+                        input::-webkit-outer-spin-button,
+                        input::-webkit-inner-spin-button {
+                            -webkit-appearance: none;
+                            margin: 0;
+                        }
+
+                        .addAmount {
+                            border: 2px solid gray;
+                            width: auto;
+                            padding: 8px 16px;
+                            outline: none;
+                            width: 40px;
+                            text-align: center;
+                            font-size: 16px;
+                        }
+
+                        .addToCart {
+                            border: 2px solid gray;
+                            width: fit-content;
+                            padding: 8px 16px;
+                            border-radius: 6px;
+                            cursor: pointer;
+                            background-color: #D9785277;
+                            font-size: 16px;
+                        }
+                    }
+                }
+
+
             }
         }
     }
