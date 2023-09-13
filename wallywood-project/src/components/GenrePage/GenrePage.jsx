@@ -7,7 +7,11 @@ export const GenrePage = () => {
 
     const { genre } = useParams()
 
-    const [url, setUrl] = useState(`http://localhost:4000/poster/list/${genre}`)
+    useEffect(() => {
+        setUrl(`http://localhost:4000/poster/list/${genre}`)
+    }, [genre])
+    
+    const [url, setUrl] = useState()
 
     const [data, setData] = useState()
 
@@ -37,11 +41,11 @@ export const GenrePage = () => {
             <div className={style.genrePageContainer}>
                 <div className={style.headerAndSelect}>
                     <h2>Plakater</h2>
-                    <select>
+                    <select onChange={(e) => setSort(e.target.value)}>
                         <option value="" disabled selected hidden>Sortér</option>
-                        <option value="">Pris - stigende</option>
-                        <option value="">Pris - faldene</option>
-                        <option value="">Titel</option>
+                        <option value="low">Pris - stigende</option>
+                        <option value="high">Pris - faldene</option>
+                        <option value="title">Titel</option>
                     </select>
                 </div>
                 <div className={style.filterAndPosters}>
