@@ -1,19 +1,36 @@
 import style from './GenrePage.module.scss'
 import { useState, useEffect } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
-import { SortAndFilter } from '../SortAndFilter/SortAndFilter'
+import { Filter } from '../Filter/Filter'
 
 export const GenrePage = () => {
 
     const { genre } = useParams()
 
-    let url = `http://localhost:4000/poster/list/${genre}`
+    const [url, setUrl] = useState(`http://localhost:4000/poster/list/${genre}`)
 
     const [data, setData] = useState()
 
     useEffect(() => {
         fetch(url).then(res => res.json()).then(data => setData(data))
     }, [url])
+
+    const setSort = (sort) => {
+        switch (sort) {
+            case 'low':
+                setUrl(`http://localhost:4000/poster/list/${genre}?sort_key=price&sort_direction=asc`)
+                // url = 'http://localhost:4000/poster/list?sort_key=price&sort_direction=asc'
+                break;
+            case 'high':
+                // url = 'http://localhost:4000/poster/list?sort_key=price&sort_direction=desc'
+                setUrl(`http://localhost:4000/poster/list/${genre}?sort_key=price&sort_direction=desc`)
+                break;
+            case 'title':
+                // url = 'http://localhost:4000/poster/list?sort_key=name'
+                setUrl(`http://localhost:4000/poster/list/${genre}?sort_key=name`)
+                break;
+        }
+    }
 
     return (
         <>
@@ -28,7 +45,7 @@ export const GenrePage = () => {
                     </select>
                 </div>
                 <div className={style.filterAndPosters}>
-                <SortAndFilter />
+                <Filter />
                 <div className={style.posters}>
                     {data && data.map((item) => {
 

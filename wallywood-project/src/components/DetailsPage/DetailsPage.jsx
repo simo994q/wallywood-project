@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom'
 import style from './DetailsPage.module.scss'
 import { useEffect, useState } from 'react'
-import { SortAndFilter } from '../SortAndFilter/SortAndFilter'
+import { Filter } from '../Filter/Filter'
 
 export const DetailsPage = () => {
 
@@ -22,7 +22,7 @@ export const DetailsPage = () => {
                     <h2>Plakater</h2>
                 </div>
                 <div className={style.filterAndPosters}>
-                    <SortAndFilter />
+                    <Filter />
                     <div className={style.poster}>
                         <img src={data?.image} alt="" />
                         <div className={style.posterDetails}>

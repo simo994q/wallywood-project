@@ -1,7 +1,7 @@
-import style from './SortAndFilter.module.scss'
+import style from './Filter.module.scss'
 import { NavLink } from 'react-router-dom'
 
-export const SortAndFilter = ({ children }) => {
+export const Filter = ({ children }) => {
 
     const filterArray = [
         { genre: 'Action', slug: 'action' },
