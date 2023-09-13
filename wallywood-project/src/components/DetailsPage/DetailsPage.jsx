@@ -20,12 +20,6 @@ export const DetailsPage = () => {
             <div className={style.detailsPageContainer}>
                 <div className={style.headerAndSelect}>
                     <h2>Plakater</h2>
-                    <select>
-                        <option value="" disabled selected hidden>Sortér</option>
-                        <option value="">Pris - stigende</option>
-                        <option value="">Pris - faldene</option>
-                        <option value="">Titel</option>
-                    </select>
                 </div>
                 <div className={style.filterAndPosters}>
                     <SortAndFilter />
