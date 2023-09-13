@@ -1,7 +1,7 @@
 import style from './SortAndFilter.module.scss'
 import { NavLink } from 'react-router-dom'
 
-export const SortAndFilter = ({children}) => {
+export const SortAndFilter = ({ children }) => {
 
     const filterArray = [
         { genre: 'Action', slug: 'action' },
@@ -16,39 +16,25 @@ export const SortAndFilter = ({children}) => {
 
     return (
         <>
-            <div className={style.postersPageContainer}>
-                <div className={style.headerAndSelect}>
-                    <h2>Plakater</h2>
-                    <select>
-                        <option value="" disabled selected hidden>Sortér</option>
-                        <option value="">Pris - stigende</option>
-                        <option value="">Pris - faldene</option>
-                        <option value="">Titel</option>
-                    </select>
-                </div>
-                <div className={style.filterAndPosters}>
-                    <div className={style.filter}>
-                        <h3>Filtre</h3>
-                        <h4>Genre</h4>
-                        <ul>
-                            {filterArray.map((item, index) => {
+            <div className={style.filter}>
+                <h3>Filtre</h3>
+                <h4>Genre</h4>
+                <ul>
+                    {filterArray.map((item, index) => {
 
 
-                                return (
-                                    <li key={index}><NavLink to={`/poster/list/${item.slug}`} style={({ isActive }) => {
-                                        return {
-                                            color: isActive ? 'red' : '#524641'
-                                        };
-                                    }}> {item.genre}</NavLink></li>
-                                )
-                            })}
-                        </ul>
-                        <h4>Prisområde</h4>
-                        <div>
-                            ...
-                        </div>
-                    </div>
-                    {children}
+                        return (
+                            <li key={index}><NavLink to={`/poster/list/${item.slug}`} style={({ isActive }) => {
+                                return {
+                                    color: isActive ? '#8f320d' : '#D97852'
+                                };
+                            }}> {item.genre}</NavLink></li>
+                        )
+                    })}
+                </ul>
+                <h4>Prisområde</h4>
+                <div>
+                    ...
                 </div>
             </div>
         </>

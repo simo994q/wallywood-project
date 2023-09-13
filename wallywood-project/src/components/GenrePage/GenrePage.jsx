@@ -17,7 +17,18 @@ export const GenrePage = () => {
 
     return (
         <>
-            <SortAndFilter>
+            <div className={style.genrePageContainer}>
+                <div className={style.headerAndSelect}>
+                    <h2>Plakater</h2>
+                    <select>
+                        <option value="" disabled selected hidden>Sortér</option>
+                        <option value="">Pris - stigende</option>
+                        <option value="">Pris - faldene</option>
+                        <option value="">Titel</option>
+                    </select>
+                </div>
+                <div className={style.filterAndPosters}>
+                <SortAndFilter />
                 <div className={style.posters}>
                     {data && data.map((item) => {
 
@@ -33,7 +44,8 @@ export const GenrePage = () => {
                         )
                     })}
                 </div>
-            </SortAndFilter>
+            </div>
+        </div>
         </>
     )
 }
