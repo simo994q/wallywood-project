@@ -17,14 +17,11 @@ export const PostersPage = () => {
         switch (sort) {
             case 'low':
                 setUrl('http://localhost:4000/poster/list?sort_key=price&sort_direction=asc')
-                // url = 'http://localhost:4000/poster/list?sort_key=price&sort_direction=asc'
                 break;
             case 'high':
-                // url = 'http://localhost:4000/poster/list?sort_key=price&sort_direction=desc'
                 setUrl('http://localhost:4000/poster/list?sort_key=price&sort_direction=desc')
                 break;
             case 'title':
-                // url = 'http://localhost:4000/poster/list?sort_key=name'
                 setUrl('http://localhost:4000/poster/list?sort_key=name')
                 break;
         }
