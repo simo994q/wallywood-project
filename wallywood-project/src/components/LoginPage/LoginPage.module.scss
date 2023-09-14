@@ -38,11 +38,23 @@
                 background-color: #D9785277;
             }
         }
+
+
     }
+
 
     h2 {
         color: #D97852;
         font-size: 28px;
         font-family: 'Titillium Web';
     }
+}
+
+.submitButton {
+    border: 2px solid gray;
+    width: fit-content;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: #D9785277;
 }

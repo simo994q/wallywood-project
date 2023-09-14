@@ -30,8 +30,8 @@ export const ExistingUser = ({ children }) => {
     if (localStorage.getItem('user')) {
         return (
             <>
-                <h1>duer er erlogget ind</h1>
-                <button onClick={() => logout()}>lgodyudunfew</button>
+                <h1>Du er logget ind som {JSON.parse(localStorage.getItem('user')).firstname}</h1>
+                <input type='submit' value='Log ud' onClick={() => logout()} className={style.submitButton}/>
             </>
         )
     } else {
