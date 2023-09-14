@@ -12,4 +12,70 @@
         font-size: 28px;
         font-family: 'Titillium Web';
     }
+
+    .news {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+
+        .poster {
+            width: 100%;
+            display: flex;
+            gap: 20px;
+        
+            img {
+                width: 140px
+            }
+        
+            .posterDetails {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                width: 100%;
+                gap: 4px;
+
+                h3 {
+                    font-size: 16px;
+                }
+
+                p {
+                    font-size: 14px;
+                }
+
+                h4 {
+                    font-size: 14px;
+                }
+        
+                .cartAndStock {
+                    display: flex;
+                    justify-content: space-between;
+                    width: 100%;
+                    align-items: center;
+        
+                    div {
+                        display: flex;
+                        gap: 20px;
+        
+                        input::-webkit-outer-spin-button,
+                        input::-webkit-inner-spin-button {
+                            -webkit-appearance: none;
+                            margin: 0;
+                        }
+        
+                        .readMore {
+                            border: 2px solid gray;
+                            width: fit-content;
+                            padding: 8px 16px;
+                            border-radius: 6px;
+                            cursor: pointer;
+                            background-color: #D9785277;
+                            font-size: 12px;
+                        }
+                    }
+                }
+        
+        
+            }
+        }
+    }
 }
