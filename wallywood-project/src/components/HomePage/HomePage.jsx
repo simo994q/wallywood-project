@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import style from './HomePage.module.scss'
+import { NavLink } from 'react-router-dom'
 
 export const HomePage = () => {
 
@@ -27,7 +28,7 @@ export const HomePage = () => {
                                     <p>Genre: {item.genres[0].title}</p>
                                     <div className={style.cartAndStock}>
                                         <div>
-                                            <input type="submit" value="Læs mere" className={style.readMore} />
+                                            <NavLink to={`/poster/${item.id}`}><input type="submit" value="Læs mere" className={style.readMore}/></NavLink>
                                         </div>
                                     </div>
                                 </div>
