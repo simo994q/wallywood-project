@@ -9,7 +9,6 @@ export const HomePage = () => {
 
     useEffect(() => {
         fetch(url).then(res => res.json()).then(data => setData(data))
-        console.log(data);
     }, [url])
 
     return (

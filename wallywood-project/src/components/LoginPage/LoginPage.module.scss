@@ -2,13 +2,7 @@
     margin: 20px 40px;
     font-family: 'Open Sans';
 
-    h2 {
-        color: #D97852;
-        font-size: 28px;
-        font-family: 'Titillium Web';
-    }
-
-    form {
+    .userForm {
         display: flex;
         flex-direction: column;
         width: 400px;
@@ -31,13 +25,24 @@
             font-family: 'Open Sans';
         }
 
-        .loginButton {
-            border: 2px solid gray;
-            width: fit-content;
-            padding: 8px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            background-color: #D9785277;
+        .formButtons {
+            display: flex;
+            justify-content: space-between;
+
+            .submitButton {
+                border: 2px solid gray;
+                width: fit-content;
+                padding: 8px 16px;
+                border-radius: 6px;
+                cursor: pointer;
+                background-color: #D9785277;
+            }
         }
+    }
+
+    h2 {
+        color: #D97852;
+        font-size: 28px;
+        font-family: 'Titillium Web';
     }
 }

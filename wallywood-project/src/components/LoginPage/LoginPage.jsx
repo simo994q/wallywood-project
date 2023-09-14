@@ -1,38 +1,33 @@
+import { useState } from 'react'
 import style from './LoginPage.module.scss'
-import { useForm } from "react-hook-form";
-import { useState } from 'react';
+import { ExistingUser } from './ExistingUser/ExistingUser'
+import { NewUser } from './NewUser/NewUser'
 
 export const LoginPage = () => {
 
-    const { register, handleSubmit } = useForm();
+    const [changeForm, setChangeForm] = useState('login')
 
-    const setData = (data) => {
-        console.log(data);
-        setUserame(data.name)
-        setPassword(data.email)
+    if (changeForm === 'login') {
+        return (
+            <>
+                <div className={style.loginPageContainer}>
+                    <ExistingUser>
+                        <input type='button' value='Opret bruger her' onClick={() => setChangeForm('create')} className={style.submitButton} />
+                    </ExistingUser>
+                </div>
+            </>
+        )
+    } else if (changeForm === 'create') {
+        return (
+            <>
+                <div className={style.loginPageContainer}>
+                    <NewUser>
+                        <input type='button' value='Log ind her' onClick={() => setChangeForm('login')} className={style.submitButton} />
+                    </NewUser>
+                </div>
+            </>
+        )
     }
 
-    const onSubmit = data => setData(data);
 
-    const [username, setUserame] = useState('')
-    const [password, setPassword] = useState('')
-
-    return (
-        <>
-            <div className={style.loginPageContainer}>
-                <h2>Kontakt os</h2>
-                <form className={style.reactFormInput} onSubmit={handleSubmit(onSubmit)}>
-                    <label htmlFor="username">
-                        Dit brugernavn: <span>*</span>
-                    </label>
-                    <input {...register('username', { required: true })} name="username" id="username" />
-                    <label htmlFor="password">
-                        Dit password: <span>*</span>
-                    </label>
-                    <input {...register('password', { required: true })} name="password" id="password" />
-                    <input type="submit" value="Send" className={style.loginButton} />
-                </form>
-            </div>
-        </>
-    )
 }
