@@ -11,13 +11,11 @@ export const PostersPage = () => {
     const [fetchUrl, setFetchUrl] = useState(`http://localhost:4000/poster/list?limit=`)
 
     useEffect(() => {
-        console.log(123);
         useFetch(fetchUrl)
     }, [showItem, fetchUrl])
 
     const useFetch = (url) => {
         fetch(url + showItem).then(res => res.json()).then(data => setData(data))
-        console.log(data);
     }
 
     const setSort = (sort) => {
