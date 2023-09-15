@@ -33,8 +33,11 @@ export const Filter = ({ children }) => {
                     })}
                 </ul>
                 <h4>Prisområde</h4>
-                <div>
-                    ...
+                <div className={style.priceRange}>
+                    <input type="number" defaultValue='0' />
+                    <span> - </span>
+                    <input type="number" defaultValue='3800' />
+                    <span>kr</span>
                 </div>
             </div>
         </>
