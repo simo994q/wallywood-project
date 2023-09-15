@@ -5,40 +5,33 @@ import { Filter } from '../Filter/Filter'
 
 export const PostersPage = () => {
 
-    // const [url, setUrl] = useState('http://localhost:4000/poster/list')
-
     const [data, setData] = useState()
 
     const [showItem, setShowItem] = useState(6)
     const [fetchUrl, setFetchUrl] = useState(`http://localhost:4000/poster/list?limit=`)
 
-    // useEffect(() => {
-    //     setFetchUrl(fetchUrl)
-    // }, [showItem])
-
-
     useEffect(() => {
         console.log(123);
         useFetch(fetchUrl)
     }, [showItem, fetchUrl])
-    
+
     const useFetch = (url) => {
         fetch(url + showItem).then(res => res.json()).then(data => setData(data))
         console.log(data);
     }
-    
+
     const setSort = (sort) => {
         switch (sort) {
             case 'low':
-                setShowItem(6)
+                setShowItem(showItem)
                 setFetchUrl(`http://localhost:4000/poster/list?sort_key=price&sort_direction=asc&limit=`)
                 break;
             case 'high':
-                setShowItem(6)
+                setShowItem(showItem)
                 setFetchUrl(`http://localhost:4000/poster/list?sort_key=price&sort_direction=desc&limit=`)
                 break;
             case 'title':
-                setShowItem(6)
+                setShowItem(showItem)
                 setFetchUrl(`http://localhost:4000/poster/list?sort_key=name&limit=`)
                 break;
         }
@@ -78,7 +71,6 @@ export const PostersPage = () => {
                             <input type="button" value="Vis flere" onClick={() => setShowItem(showItem + 6)} />
                         </div>
                     </div>
-
                 </div>
             </div>
         </>

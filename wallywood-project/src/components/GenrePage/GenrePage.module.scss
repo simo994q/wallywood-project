@@ -28,6 +28,24 @@
         display: flex;
         gap: 40px;
 
+        .postersContainer {
+            width: 100%;
+
+            .showMoreContainer {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+
+                input {
+                    border: 2px solid gray;
+                    padding: 8px 16px;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    background-color: #D9785277;
+                }
+            }
+        }
+
         .filter {
             width: 200px;
             border-right: 2px solid #D97852;

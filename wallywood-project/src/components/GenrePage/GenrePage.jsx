@@ -7,28 +7,39 @@ export const GenrePage = () => {
 
     const { genre } = useParams()
 
-    useEffect(() => {
-        setUrl(`http://localhost:4000/poster/list/${genre}`)
-    }, [genre])
-
-    const [url, setUrl] = useState()
-
     const [data, setData] = useState()
 
+    const [showItem, setShowItem] = useState(6)
+    const [fetchUrl, setFetchUrl] = useState(`http://localhost:4000/poster/list/${genre}?limit=`)
+
     useEffect(() => {
-        fetch(url).then(res => res.json()).then(data => setData(data))
-    }, [url])
+        setFetchUrl(`http://localhost:4000/poster/list/${genre}?limit=`)
+        setShowItem(6)
+    }, [genre])
+
+    useEffect(() => {
+        console.log(123);
+        useFetch(fetchUrl)
+    }, [showItem, fetchUrl])
+
+    const useFetch = (url) => {
+        fetch(url + showItem).then(res => res.json()).then(data => setData(data))
+        console.log(data);
+    }
 
     const setSort = (sort) => {
         switch (sort) {
             case 'low':
-                setUrl(`http://localhost:4000/poster/list/${genre}?sort_key=price&sort_direction=asc`)
+                setShowItem(showItem)
+                setFetchUrl(`http://localhost:4000/poster/list/${genre}?sort_key=price&sort_direction=asc&limit=`)
                 break;
             case 'high':
-                setUrl(`http://localhost:4000/poster/list/${genre}?sort_key=price&sort_direction=desc`)
+                setShowItem(showItem)
+                setFetchUrl(`http://localhost:4000/poster/list/${genre}?sort_key=price&sort_direction=desc&limit=`)
                 break;
             case 'title':
-                setUrl(`http://localhost:4000/poster/list/${genre}?sort_key=name`)
+                setShowItem(showItem)
+                setFetchUrl(`http://localhost:4000/poster/list/${genre}?sort_key=name&limit=`)
                 break;
         }
     }
@@ -46,24 +57,31 @@ export const GenrePage = () => {
                     </select>
                 </div>
                 <div className={style.filterAndPosters}>
-                <Filter />
-                <div className={style.posters}>
-                    {data && data.map((item) => {
+                    <Filter />
+                    <div className={style.postersContainer}>
 
-                        const itemLink = `/poster/${item.id}`
+                        <div className={style.posters}>
+                            {data && data.map((item) => {
 
-                        return (
-                            <div key={item.id}>
-                                <NavLink to={itemLink}><img src={item.image} alt={item.name} /></NavLink>
-                                <h3><NavLink to={itemLink}>{item.name}</NavLink></h3>
-                                <p>Kr. {item.price},-</p>
-                                <input type="button" value="Læg i kurv" />
-                            </div>
-                        )
-                    })}
+                                const itemLink = `/poster/${item.id}`
+
+                                return (
+                                    <div key={item.id}>
+                                        <NavLink to={itemLink}><img src={item.image} alt={item.name} /></NavLink>
+                                        <h3><NavLink to={itemLink}>{item.name}</NavLink></h3>
+                                        <p>Kr. {item.price},-</p>
+                                        <input type="button" value="Læg i kurv" />
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <div className={style.showMoreContainer}>
+                            <input type="button" value="Vis flere" onClick={() => setShowItem(showItem + 6)} />
+                        </div>
+                    </div>
+
                 </div>
             </div>
-        </div>
         </>
     )
 }
