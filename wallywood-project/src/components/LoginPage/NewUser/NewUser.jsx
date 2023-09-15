@@ -37,7 +37,7 @@ export const NewUser = ({ children }) => {
         }
 
         
-    const loginUser = (e) => {
+    const loginUser = () => {
         const options = {
             method: 'POST',
             headers: {
