@@ -18,13 +18,11 @@ export const GenrePage = () => {
     }, [genre])
 
     useEffect(() => {
-        console.log(123);
         useFetch(fetchUrl)
     }, [showItem, fetchUrl])
 
     const useFetch = (url) => {
         fetch(url + showItem).then(res => res.json()).then(data => setData(data))
-        console.log(data);
     }
 
     const setSort = (sort) => {
