@@ -15,6 +15,7 @@ export const ExistingUser = ({ children }) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
+                Authorization: `Bearer ${theusertoken}`
             },
             body: new URLSearchParams({
                 username: userEmail,
