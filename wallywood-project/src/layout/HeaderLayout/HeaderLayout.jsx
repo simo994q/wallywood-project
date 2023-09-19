@@ -15,12 +15,10 @@ export const HeaderLayout = () => {
         { url: '/contact', page: 'Kontakt' },
         { url: '/login', page: 'Login' }
     ]
-    console.log(cart);
 
     const [showCart, setShowCart] = useState(false)
 
     const updateCart = () => {
-        console.log(54);
         const userToken = JSON.parse(localStorage.getItem('user')).access_token
 
         const options = {
@@ -33,12 +31,11 @@ export const HeaderLayout = () => {
 
         fetch('http://localhost:4000/cart', options)
             .then(response => response.json())
-            .then(data => {setCart(data)})
+            .then(data => setCart(data))
     }
 
     const removeCartItem = (id) => {
         const userToken = JSON.parse(localStorage.getItem('user')).access_token
-        console.log(32);
 
         const options = {
             method: 'DELETE',
@@ -50,8 +47,8 @@ export const HeaderLayout = () => {
 
         let url = 'http://localhost:4000/cart/' + id
         fetch(url, options)
-            .then(response => response.json())
-            .then(data => {updateCart(), location.reload()})
+            // .then(response => response.json())
+            .then(data => updateCart())
     }
 
     return (
@@ -66,14 +63,14 @@ export const HeaderLayout = () => {
 
 
             <div className={style.linksAndCart}>
-                <div className={style.cart} onClick={() => {
+                <div className={style.cart}>
+                    <img src="/basket.svg" alt="" onClick={() => {
                     if (showCart) {
                         setShowCart(false)
                     } else if (!showCart) {
                         setShowCart(true)
                     }
-                }}>
-                    <img src="/basket.svg" alt="" />
+                }} />
                     <div className={style.cartItems} style={{ display: showCart ? 'flex' : 'none' }}>
                         {cart?.map((item, index) => {
                             return (
