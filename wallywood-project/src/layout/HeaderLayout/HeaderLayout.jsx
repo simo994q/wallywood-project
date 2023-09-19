@@ -33,7 +33,7 @@ export const HeaderLayout = () => {
 
         fetch('http://localhost:4000/cart', options)
             .then(response => response.json())
-            .then(data => setCart(data))
+            .then(data => {setCart(data)})
     }
 
     const removeCartItem = (id) => {
@@ -51,7 +51,7 @@ export const HeaderLayout = () => {
         let url = 'http://localhost:4000/cart/' + id
         fetch(url, options)
             .then(response => response.json())
-            .then(data => updateCart())
+            .then(data => {updateCart(), location.reload()})
     }
 
     return (
