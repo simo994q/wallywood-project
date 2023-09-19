@@ -9,22 +9,26 @@ import { AboutPage } from './components/AboutPage/AboutPage'
 import { ContactPage } from './components/ContactPage/ContactPage'
 import { LoginPage } from './components/LoginPage/LoginPage'
 
+import { CartContextProvider } from './context/CartContext'
+
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<MainLayout />}>
-            <Route index element={<HomePage />} />
-            <Route path='poster' element={<PostersPage />} />
-            <Route path='poster/:id' element={<DetailsPage />} />
-            <Route path='poster/list/:genre' element={<GenrePage />} />
-            <Route path='about' element={<AboutPage />} />
-            <Route path='contact' element={<ContactPage />} />
-            <Route path='login' element={<LoginPage />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <CartContextProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<MainLayout />}>
+              <Route index element={<HomePage />} />
+              <Route path='poster' element={<PostersPage />} />
+              <Route path='poster/:id' element={<DetailsPage />} />
+              <Route path='poster/list/:genre' element={<GenrePage />} />
+              <Route path='about' element={<AboutPage />} />
+              <Route path='contact' element={<ContactPage />} />
+              <Route path='login' element={<LoginPage />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </CartContextProvider>
     </>
   )
 }
