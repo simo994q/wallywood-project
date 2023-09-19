@@ -15,8 +15,44 @@ export const HeaderLayout = () => {
         { url: '/contact', page: 'Kontakt' },
         { url: '/login', page: 'Login' }
     ]
+    console.log(cart);
 
     const [showCart, setShowCart] = useState(false)
+
+    const updateCart = () => {
+        console.log(54);
+        const userToken = JSON.parse(localStorage.getItem('user')).access_token
+
+        const options = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                Authorization: `Bearer ${userToken}`
+            }
+        };
+
+        fetch('http://localhost:4000/cart', options)
+            .then(response => response.json())
+            .then(data => setCart(data))
+    }
+
+    const removeCartItem = (id) => {
+        const userToken = JSON.parse(localStorage.getItem('user')).access_token
+        console.log(32);
+
+        const options = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                Authorization: `Bearer ${userToken}`
+            }
+        }
+
+        let url = 'http://localhost:4000/cart/' + id
+        fetch(url, options)
+            .then(response => response.json())
+            .then(data => updateCart())
+    }
 
     return (
         <div className={style.headerLayoutContainer}>
@@ -38,13 +74,19 @@ export const HeaderLayout = () => {
                     }
                 }}>
                     <img src="/basket.svg" alt="" />
-                    <div className={style.cartItems} style={{display: showCart ? 'flex' : 'none'}}>
+                    <div className={style.cartItems} style={{ display: showCart ? 'flex' : 'none' }}>
                         {cart?.map((item, index) => {
                             return (
                                 <div key={index}>
-                                    <img src={item.poster.image} alt="" />
-                                    <h5>{item.poster.name}</h5>
-                                    <p>{item.quantity}</p>
+                                    <div>
+                                        <img src={item.poster.image} alt="" />
+                                        <h5>{item.poster.name}</h5>
+                                    </div>
+                                    <div>
+                                        <p>{item.quantity}</p>
+                                        <p onClick={() => removeCartItem(item.id)}>x</p>
+                                    </div>
+
                                 </div>
                             )
                         })}

@@ -1,7 +1,8 @@
 import { useParams } from 'react-router-dom'
 import style from './DetailsPage.module.scss'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { Filter } from '../Filter/Filter'
+import { CartContext } from '../../context/CartContext'
 
 export const DetailsPage = () => {
 
@@ -9,11 +10,83 @@ export const DetailsPage = () => {
 
     let url = `http://localhost:4000/poster/details/${id}`
 
+    const { cart, setCart } = useContext(CartContext)
+
     const [data, setData] = useState()
+
+    const [posterAmount, setPosterAmount] = useState(0)
 
     useEffect(() => {
         fetch(url).then(res => res.json()).then(data => setData(data))
     }, [url])
+
+    const updateCart = () => {
+        const userToken = JSON.parse(localStorage.getItem('user')).access_token
+
+        const options = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                Authorization: `Bearer ${userToken}`
+            }
+        };
+
+        fetch('http://localhost:4000/cart', options)
+            .then(response => response.json())
+            .then(data => setCart(data))
+    }
+
+    const addToCart = (id, quantity) => {
+
+        if (JSON.parse(localStorage.getItem('user'))) {
+            if (posterAmount !== 0) {
+                const checkExists = (poster) => {
+                    return poster.poster_id === Number(id)
+                }
+
+                let exists = cart.some(checkExists)
+
+                if (!exists) {
+                    const userToken = JSON.parse(localStorage.getItem('user')).access_token
+                    const options = {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            Authorization: `Bearer ${userToken}`
+                        },
+                        body: new URLSearchParams({
+                            poster_id: id,
+                            quantity: quantity
+                        })
+                    }
+                    fetch('http://localhost:4000/cart', options)
+                        .then(response => response.json())
+                        .then(data => updateCart())
+                } else if (exists) {
+                    const userToken = JSON.parse(localStorage.getItem('user')).access_token
+
+                    const options = {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            Authorization: `Bearer ${userToken}`
+                        },
+                        body: new URLSearchParams({
+                            poster_id: id,
+                            quantity: quantity
+                        })
+                    }
+                    fetch('http://localhost:4000/cart', options)
+                        .then(response => response.json())
+                        .then(data => updateCart())
+                }
+            } else {
+                alert('Vælg antal')
+            }
+        } else {
+            alert('Du er ikke logget ind')
+        }
+    }
 
     return (
         <>
@@ -33,8 +106,8 @@ export const DetailsPage = () => {
                             <h4>Kr. {data?.price},-</h4>
                             <div className={style.cartAndStock}>
                                 <div>
-                                    <input type="number" className={style.addAmount} defaultValue='0' />
-                                    <input type="submit" value="Læg i kurv" className={style.addToCart} />
+                                    <input type="number" className={style.addAmount} defaultValue='0' onChange={(e) => setPosterAmount(e.target.value)} />
+                                    <input type="submit" value="Læg i kurv" className={style.addToCart} onClick={() => addToCart(id, posterAmount)} />
                                 </div>
                                 <p style={{ color: data?.stock === 0 ? 'red' : 'green' }}>{data?.stock} på lager</p>
                             </div>
