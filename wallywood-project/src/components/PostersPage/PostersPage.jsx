@@ -1,110 +1,19 @@
 import style from './PostersPage.module.scss'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Filter } from '../Filter/Filter'
+import { CartContext } from '../../context/CartContext'
 
 export const PostersPage = () => {
+
+    const { cart, setCart } = useContext(CartContext)
 
     const [data, setData] = useState()
 
     const [showItem, setShowItem] = useState(6)
     const [fetchUrl, setFetchUrl] = useState(`http://localhost:4000/poster/list?limit=`)
 
-    const testfunc = (data, id, quantity) => {
-        const userToken = JSON.parse(localStorage.getItem('user')).access_token
-        console.log(data);
-        if (data.length === 0) {
-            console.log(4343)
-            const options = {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    Authorization: `Bearer ${userToken}`
-                },
-                body: new URLSearchParams({
-                    poster_id: id,
-                    quantity: quantity
-                })
-            }
-            fetch('http://localhost:4000/cart', options)
-                .then(response => response.json())
-                .then(data => console.log(data))
-        } else {
-            if (data.includes()) {
-                console.log(123);
-                const options = {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                        Authorization: `Bearer ${userToken}`
-                    },
-                    body: new URLSearchParams({
-                        poster_id: id,
-                        quantity: quantity
-                    })
-                }
-                fetch('http://localhost:4000/cart', options)
-                    .then(response => response.json())
-                    .then(data => console.log(data))
-
-            } else {
-                console.log(item);
-                const options = {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                        Authorization: `Bearer ${userToken}`
-                    },
-                    body: new URLSearchParams({
-                        poster_id: id,
-                        quantity: quantity
-                    })
-                }
-                fetch('http://localhost:4000/cart', options)
-                    .then(response => response.json())
-                    .then(data => console.log(data))
-            }
-        }
-        data.map((item) => {
-            if (data.length === 0) {
-                console.log(123);
-                const options = {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                        Authorization: `Bearer ${userToken}`
-                    },
-                    body: new URLSearchParams({
-                        poster_id: id,
-                        quantity: quantity
-                    })
-                }
-                fetch('http://localhost:4000/cart', options)
-                    .then(response => response.json())
-                    .then(data => console.log(data))
-
-            } else {
-                console.log(item);
-                const options = {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                        Authorization: `Bearer ${userToken}`
-                    },
-                    body: new URLSearchParams({
-                        poster_id: id,
-                        quantity: quantity
-                    })
-                }
-                fetch('http://localhost:4000/cart', options)
-                    .then(response => response.json())
-                    .then(data => console.log(data))
-            }
-        })
-    }
-
-    const addToCart = (id, quantity) => {
-
+    const updateCart = () => {
         const userToken = JSON.parse(localStorage.getItem('user')).access_token
 
         const options = {
@@ -117,8 +26,61 @@ export const PostersPage = () => {
 
         fetch('http://localhost:4000/cart', options)
             .then(response => response.json())
-            .then(data => testfunc(data, id, quantity));
+            .then(data => setCart(data))
     }
+
+    const addToCart = (id, quantity) => {
+
+        if (JSON.parse(localStorage.getItem('user'))) {
+
+            const checkExists = (poster) => {
+                return poster.poster_id === id
+            }
+
+            let exists = cart.some(checkExists)
+
+            if (!exists) {
+                const userToken = JSON.parse(localStorage.getItem('user')).access_token
+                const options = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        Authorization: `Bearer ${userToken}`
+                    },
+                    body: new URLSearchParams({
+                        poster_id: id,
+                        quantity: quantity
+                    })
+                }
+                fetch('http://localhost:4000/cart', options)
+                    .then(response => response.json())
+                    .then(data => updateCart())
+            } else if (exists) {
+                const userToken = JSON.parse(localStorage.getItem('user')).access_token
+
+                const options = {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        Authorization: `Bearer ${userToken}`
+                    },
+                    body: new URLSearchParams({
+                        poster_id: id,
+                        quantity: quantity
+                    })
+                }
+                fetch('http://localhost:4000/cart', options)
+                    .then(response => response.json())
+                    .then(data => updateCart())
+            }
+        } else {
+            alert('Du er ikke logget ind')
+        }
+    }
+
+
+
+
 
     useEffect(() => {
         useFetch(fetchUrl)
