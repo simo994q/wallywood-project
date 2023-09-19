@@ -47,7 +47,6 @@ export const HeaderLayout = () => {
 
         let url = 'http://localhost:4000/cart/' + id
         fetch(url, options)
-            // .then(response => response.json())
             .then(data => updateCart())
     }
 
@@ -81,7 +80,7 @@ export const HeaderLayout = () => {
                                     </div>
                                     <div>
                                         <p>{item.quantity}</p>
-                                        <p onClick={() => removeCartItem(item.id)}>x</p>
+                                        <p onClick={() => removeCartItem(item.id)} className={style.remove}>X</p>
                                     </div>
 
                                 </div>
